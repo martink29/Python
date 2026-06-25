@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+
+<body>
+
+<h2>User Profile</h2>
+
+<p><b>Username:</b> {{ request.user.username }}</p>
+<p><b>Email:</b> {{ request.user.email }}</p>
+
+<br>
+
+<h3>Email Settings</h3>
+
+<p>
+<a href="/change-email-vulnerable/">Change Email (Vulnerable version)</a>
+</p>
+
+<p>
+<a href="/change-email-safe/">Change Email (Protected version)</a>
+</p>
+
+<br>
+
+<a href="/">Home</a>
+
+</body>
+</html>

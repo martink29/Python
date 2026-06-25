@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Email (Protected)</title>
+</head>
+
+<body>
+
+<h2>Change Email (Protected Version)</h2>
+
+<p>
+This version uses Django CSRF protection.
+</p>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    <label>New Email</label><br>
+    <input type="email" name="new_email"><br><br>
+
+    <button type="submit">Change Email</button>
+
+</form>
+
+<br>
+
+<a href="/profile/">Back to Profile</a>
+
+</body>
+</html>

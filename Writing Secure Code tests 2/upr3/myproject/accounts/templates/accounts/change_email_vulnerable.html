@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Email (Vulnerable)</title>
+</head>
+
+<body>
+
+<h2>Change Email (Vulnerable Version)</h2>
+
+<p>
+This version does not use CSRF protection.
+</p>
+
+<form method="get">
+
+    <label>New Email</label><br>
+    <input type="email" name="new_email"><br><br>
+
+    <button type="submit">Change Email</button>
+
+</form>
+
+<br>
+
+<a href="/profile/">Back to Profile</a>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8">
+    <title>Posts</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .post-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .post-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .post-link {
+            text-decoration: none;
+            color: #2a5298;
+            font-weight: bold;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 8px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            background: #2a5298;
+            color: white;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: #1e3c72;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+        <h1>Всички постове</h1>
+
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}" style="margin:0;">
+              {% csrf_token %}
+              <button class="btn" type="submit" style="border:0;">Изход</button>
+            </form>
+        {% else %}
+            <a class="btn" href="{% url 'login' %}">Вход</a>
+        {% endif %}
+    </div>
+
+    {% for p in posts %}
+        <div class="post-card">
+            <div class="post-title">
+                <a class="post-link" href="{% url 'post_detail' p.id %}">
+                    {{ p.title }}
+                </a>
+            </div>
+            <div>
+                {{ p.content|truncatechars:120 }}
+            </div>
+        </div>
+    {% empty %}
+        <p>Няма постове.</p>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vulnerable File Reader</title>
+</head>
+<body>
+    <h1>Vulnerable File Reader</h1>
+
+    <p>Тази версия чете файл според подаденото име, без да валидира пътя.</p>
+
+    <form method="get" action="/read-file-vulnerable/">
+        <label for="file">Въведете име на файл:</label><br><br>
+        <input type="text" id="file" name="file" placeholder="file1.txt">
+        <button type="submit">Read File</button>
+    </form>
+
+    <h3>Пример за нормално извикване</h3>
+    <a href="/read-file-vulnerable/?file=file1.txt">Прочети file1.txt</a>
+
+    <h3>Пример за атака</h3>
+    <a href="/read-file-vulnerable/?file=../manage.py">Опитай Path Traversal атака</a>
+
+    <br><br>
+    <a href="/">Назад</a>
+</body>
+</html>

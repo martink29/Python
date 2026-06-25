@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8">
+    <title>{{ post.title }}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            background: #2a5298;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e3c72;
+        }
+
+        .comment {
+            padding: 15px;
+            background: #fafafa;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #2a5298;
+            font-weight: bold;
+        }
+
+        .meta {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <p><a class="back-link" href="{% url 'post_list' %}">← Назад към всички постове</a></p>
+
+    <div class="card">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Добави коментар</h2>
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="text" rows="4" placeholder="Напиши коментар..."></textarea>
+            <button type="submit">Публикувай</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Коментари</h2>
+
+        {% for c in comments %}
+            <div class="comment">
+                <div class="meta">
+                    <b>{{ c.author.username }}</b> | {{ c.created_at }}
+                </div>
+
+                {{ c.text|safe }}
+
+                {% if user == c.author %}
+                    <form method="post" action="{% url 'delete_comment' c.id %}" style="margin-top:10px;">
+                        {% csrf_token %}
+                        <button type="submit" style="background:#d9534f;">
+                            Изтрий
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Няма коментари.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>
