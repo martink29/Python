@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+// Функция за изчисляване
+void compute_sums(double *h, double *w, int n,
+                  double *sum_h, double *sum_w,
+                  double *sum_hw, double *sum_h2) {
+
+    *sum_h = *sum_w = *sum_hw = *sum_h2 = 0;
+
+    for (int i = 0; i < n; i++) {
+        *sum_h  += h[i];
+        *sum_w  += w[i];
+        *sum_hw += h[i] * w[i];
+        *sum_h2 += h[i] * h[i];
+    }
+}
+
+// Функция за линейна регресия
+void linear_regression(double sum_h, double sum_w,
+                       double sum_hw, double sum_h2,
+                       int n, double *a, double *b) {
+
+    *a = (n * sum_hw - sum_h * sum_w) / (n * sum_h2 - sum_h * sum_h);
+    *b = (sum_w - (*a) * sum_h) / n;
+}
+
+// Mean Squared Error
+double compute_mse(double *h, double *w, int n, double a, double b) {
+    double mse = 0;
+    for (int i = 0; i < n; i++) {
+        double pred = a * h[i] + b;
+        mse += (pred - w[i]) * (pred - w[i]);
+    }
+    return mse / n;
+}
+
+// Корелация (Pearson)
+double correlation(double *h, double *w, int n) {
+    double sum_h = 0, sum_w = 0, sum_hw = 0, sum_h2 = 0, sum_w2 = 0;
+
+    for (int i = 0; i < n; i++) {
+        sum_h  += h[i];
+        sum_w  += w[i];
+        sum_hw += h[i] * w[i];
+        sum_h2 += h[i] * h[i];
+        sum_w2 += w[i] * w[i];
+    }
+
+    return (n * sum_hw - sum_h * sum_w) /
+           sqrt((n * sum_h2 - sum_h * sum_h) * (n * sum_w2 - sum_w * sum_w));
+}
+
+int main() {
+    int n;
+    printf("Колко тренировъчни примера ще въведеш? ");
+    scanf("%d", &n);
+
+    if (n < 2) {
+        printf("Трябват поне 2 примера.\n");
+        return 1;
+    }
+
+    double *height = malloc(n * sizeof(double));
+    double *weight = malloc(n * sizeof(double));
+
+    printf("Въведи %d двойки (височина в см, тегло в кг):\n", n);
+
+    for (int i = 0; i < n; i++) {
+        double h, w;
+
+        while (1) {
+            printf("Пример %d: ", i + 1);
+            scanf("%lf %lf", &h, &w);
+
+            if (h > 0 && w > 0) {
+                height[i] = h;
+                weight[i] = w;
+                break;
+            } else {
+                printf("Височината и теглото трябва да са положителни!\n");
+            }
+        }
+    }
+
+    double sum_h, sum_w, sum_hw, sum_h2;
+    compute_sums(height, weight, n, &sum_h, &sum_w, &sum_hw, &sum_h2);
+
+    double a, b;
+    linear_regression(sum_h, sum_w, sum_hw, sum_h2, n, &a, &b);
+
+    double r = correlation(height, weight, n);
+    double mse = compute_mse(height, weight, n, a, b);
+
+    printf("\nРЕЗУЛТАТИ ОТ ОБУЧЕНИЕТО\n");
+    printf("Модел: тегло = %.4f * височина + %.4f\n", a, b);
+    printf("Корелация (r) = %.4f\n", r);
+    printf("MSE = %.4f\n", mse);
+
+    double h_new;
+    printf("\nВъведи височина за прогноза (см): ");
+    scanf("%lf", &h_new);
+
+    if (h_new <= 0) {
+        printf("Височината трябва да е положителна!\n");
+        return 1;
+    }
+
+    double predicted = a * h_new + b;
+    printf("Предвидено тегло: %.2f кг\n", predicted);
+
+    return 0;
+}
