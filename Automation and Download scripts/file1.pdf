@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DOX.bg - Файл организатор</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<base href="/" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="canonical" href="https://dox.bg/" />
+<meta name="description" content="DOX.bg предоставя безплатно пространство от 5 GB за съхранение, организация и споделяне на файлове с големина до 2G." />
+<meta property="og:locale" content="bg_BG" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="DOX.bg - Файл организатор" />
+<meta property="og:description" content="DOX.bg предоставя безплатно пространство от 5 GB за съхранение, организация и споделяне на файлове с големина до 2G." />
+<meta property="og:url" content="https://dox.bg/" />
+<meta property="og:site_name" content="Файл организатор DOX.bg" />
+<meta property="og:image" content="/assets/i/dox_bg.png" />
+<meta property="og:image:width" content="500" />
+<meta property="og:image:height" content="440" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="DOX.bg предоставя безплатно пространство от 5 GB за съхранение, организация и споделяне на файлове с големина до 2G." />
+<meta name="twitter:title" content="DOX.bg - Файл организатор" />
+<meta name="twitter:image" content="/assets/i/dox_bg.png" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<script type="text/javascript" src="/assets/js/polyfill.js"></script>
+<link rel="stylesheet" href="styles.43e10aba5ce028ff6273.css"></head>
+<body>
+  <iframe id="counter" src="https://img.abv.bg/dox/counter.html?v=3" width="1" height="1" scrolling="no" frameborder="0" style="display: none;"></iframe>
+  <app-root>
+    <div style="position: absolute;
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%);  
+      -webkit-transform: translate(-50%);
+      font: 16px Arial, sans-serif;
+      text-align: center;">
+      <img src="/assets/i/loader.svg" width="70" height="70" alt="Loading..." />
+      <p>Зарежда се...</p>
+    </div>
+  </app-root>
+<!-- GDPR -->
+<script src="https://img.abv.bg/e/s/GDPR_new.js?v=2" type="text/javascript" async defer></script>
+<!-- /GDPR -->
+<!-- Gemius SA Iframe -->
+<script src="https://img.abv.bg/e/s/gemius.js?v=1" type="text/javascript"></script>
+<!-- /Gemius SA Iframe --> 
+<script src="runtime.8fbc2fd6f12647d93e24.js" defer></script><script src="polyfills-es5.fc2ae34ee74d5136fa5f.js" nomodule defer></script><script src="polyfills.40ad1d81db59000edc27.js" defer></script><script src="scripts.e888373b64dc543ebfa3.js" defer></script><script src="main.9600076124c241074b94.js" defer></script></body>
+</html>
